@@ -9,7 +9,7 @@ DEFAULT_GW=$(ip route | awk '/^default/ {
 
 function health_check {
   hash=$(uuidgen -r)
-  curl -s https://ppng.io/$hash
+  curl -sm $MAX_LIFETIME https://ppng.io/$hash
 }
 
 # vpn connect func
