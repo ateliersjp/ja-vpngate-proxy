@@ -12,6 +12,8 @@ RUN apk add --no-cache \
 
 COPY start.sh /bin/
 
+ENV MAX_LIFETIME=60
+
 EXPOSE 8118
 
 CMD [ "start.sh" ]
