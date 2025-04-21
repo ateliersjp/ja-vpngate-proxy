@@ -33,9 +33,9 @@ function connect {
 while read ip; do
   ip route add $ip/32 via $DEFAULT_GW
   echo $(date +'%F %T') /sbin/ip route add $ip/32 via $DEFAULT_GW
-done < <(awk '/^nameserver|^Address: / {
+done < <(awk '/^nameserver|^Address: / && $NF~/^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/ {
   print $NF
-}' <(cat /etc/resolv.conf ; nslookup www.vpngate.net) | grep -v : )
+}' <(cat /etc/resolv.conf ; nslookup www.vpngate.net) )
 ip route del default
 
 # start proxy
